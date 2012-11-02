@@ -10,37 +10,24 @@
       <nav class="nav-collapse">
         <ul class="nav pull-left">
           <li class="<%= activate_menu("dashboard", highlight) %>">
-            <%= link_to dashboard_user_path(current_user) do %> 
+          
               <i class="icon-home icon-white"></i>Dashboard
-            <% end %>  
+           
           </li>
           <li class="<%= activate_menu("courses", highlight) %>">
-            <%= link_to my_courses_path do %> 
+  
               <i class="icon-book icon-white"></i>Courses
-            <% end %>  
+  
           </li>
           <li class="<%= activate_menu("achievements", highlight) %>">
-            <%= link_to achievements_user_path(current_user) do %>
+           
               <i class="icon-star icon-white"></i>Achievements
-            <% end %>
+          
           </li>
           
-          <li class="<%= activate_menu("messages", highlight) %>">
-            <%= link_to :conversations do %>
-              <i class="icon-comment icon-white"></i>Messages
-              <% if ! @unread_message_count.nil? && @unread_message_count > 0 %>
-              (<%= @unread_message_count %>)
-              <% end %>
-            <% end %>
-          </li>
+
         </ul>
-	<% if can? :create, Course %>
-        <ul class="nav pull-right">
-          <li>
-            <%= link_to "Switch to Course Admin View", manage_courses_path, :class => 'btn btn-success btn-mini admin_swtich_btn'%>
-          </li>
-        </ul>
-	<% end %>
+
       </nav>
     </div>
   </div>

@@ -1,0 +1,5 @@
+<script>
+	<% flash.each do |name, msg| %>
+	    $.jGrowl("<%= msg %>");
+	<% end %>
+</script>

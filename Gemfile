@@ -19,8 +19,9 @@ gem "quiet_assets", ">= 1.0.1", :group => :development
 
 # added below this line
 gem 'mini_magick', '~> 3.4'
-gem 'carrierwave-mongoid'
-gem 'carrierwave', '0.6.2'
+gem 'carrierwave', '0.6.2' # this must be above carrier-wave mongoid gem
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
 gem 'jquery-fileupload-rails'
 gem 'lazy_high_charts'
 gem 'jquery-rails', '~> 2.0.0'

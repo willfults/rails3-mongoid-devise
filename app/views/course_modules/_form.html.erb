@@ -6,9 +6,7 @@
     <li class="active">
       <%= link_to 'Modules', course_course_modules_path(@course) %>
     </li>
-    <li>
-    	<%= link_to "Recommendations", :controller => "course_recommendations", :action => "new", :course_id => @course %>
-    </li>
+
   </ul>
   
   
@@ -49,7 +47,7 @@
         <%= f.label :name, " Module Name" %>
         <%= f.text_field :name, :class => 'input-full'%>
         <%= f.label :summary, "Description" %>
-        <%= tinymce %>
+   
         <%= f.text_area :summary, :class => 'input-full tinymce' %>
         
         <% if @course_module.class_type != "Quiz" && @course_module.class_type != "Scorm" %>
@@ -136,9 +134,7 @@
               <%= f.submit :class => 'btn btn-primary' %>
             </div>
             
-            <% if @course_module.id %>
-              <%= link_to 'Delete', course_course_module_path(@course, @course_module), confirm: 'Are you sure?', method: :delete, :class => "btn btn-primary" %>
-            <% end %>
+
             <% end %>
           </div>
         </div>

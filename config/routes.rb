@@ -5,7 +5,8 @@ Rails3MongoidDevise::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
-    resources :courses do
+  
+  resources :courses do
     member do
       post :rate
       get :bookmark
@@ -20,4 +21,6 @@ Rails3MongoidDevise::Application.routes.draw do
       end
     end
   end
+  
+  match "/images/uploads/*path" => "gridfs#serve"
 end

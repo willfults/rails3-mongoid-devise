@@ -28,36 +28,20 @@ class Course
   end
   
   def to_param
-    "#{id} #{name}".parameterize
+    "#{id}".parameterize
   end
 
   belongs_to :user
-  #has_many :course_modules, :order => "position", :dependent => :destroy
+  has_many :course_modules#, :order => "position", :dependent => :destroy
   #has_many :course_histories, :dependent => :destroy
   #has_many :bookmarks, :dependent => :destroy
-  #accepts_nested_attributes_for :course_modules, :allow_destroy => true
+  accepts_nested_attributes_for :course_modules, :allow_destroy => true
   attr_accessible :course_modules_attributes
   
- 
-   
+    
   def user_name 
     user.name
   end
 
   
 end
-# == Schema Information
-#
-# Table name: courses
-#
-#  id          :integer         not null, primary key
-#  name        :string(255)
-#  description :text
-#  user_id     :integer
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
-#  category    :string(255)
-#  privacy     :string(255)
-#  published   :boolean
-#
-

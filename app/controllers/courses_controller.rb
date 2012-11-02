@@ -83,27 +83,12 @@ class CoursesController < ApplicationController
   def create
     @course = current_user.courses.build(params[:course])
 
-    if params[:upload_scorm]
-      @course.name = 'Auto Generated Scorm Course'
-      @course.description = 'Auto Generated Scorm Course'
-      @course.privacy = 'Private'
-#      @course.category = 'Other'
-    end
-
     if @course.save
-      if params[:upload_scorm]
-        begin
-          unzip_file('public' + @course.scorm_file.to_s, "public/uploads/course/scorm_file/" + @course.id.to_s)
-          @course = parse_manifest_file("public/uploads/course/scorm_file/" + @course.id.to_s + "/imsmanifest.xml", @course)
-          @course.save
-        rescue Exception => e
-          flash[:error] = "Error parsing imsmanifest.xml"
-          redirect_to edit_course_path(@course);
-        end
-      end
+      puts 'save'
       flash[:success] = "Course created!"
       redirect_to course_course_modules_path(@course);
     else
+      puts 'new'
       render 'new'
     end
   end
