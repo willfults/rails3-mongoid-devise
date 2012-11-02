@@ -1,0 +1,22 @@
+.creator {
+  .search_result {
+    border-bottom: 1px solid #CCC;
+    padding: 10px 0px;
+  }
+  .search_result:last-child {
+    border-bottom: none;
+  }
+  .show-all{
+    text-align:right;
+  }
+}
+
+  .curved-border {
+    border:1px solid #CCC; 
+    padding:5px;
+    margin-bottom:5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+  }

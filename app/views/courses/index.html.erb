@@ -1,0 +1,28 @@
+<%= render 'courses_menu', :highlight => "courses" %>
+<ul class="courses">
+  <% 
+  if @courses.empty? 
+    %>
+      No Courses. 
+    <%
+  end
+@courses.each do |course| %>
+  
+	<li>
+	  <div class="title">
+	   <span><%= link_to course.name, course_path(course) %></span>
+	  </div>
+	  <div class="description"><%= course.description.html_safe %></div>
+	  <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+	  <%= ratings_for course, :static %>
+	  <div class="commands">
+      <ul>
+        <li>
+          <%= link_to 'Start Course', course_path(course) %>
+        </li>
+      </ul>
+    </div>
+	</li>
+  
+<% end %>
+</ul>

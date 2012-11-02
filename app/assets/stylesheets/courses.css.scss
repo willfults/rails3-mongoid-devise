@@ -1,0 +1,182 @@
+.courses_navbar {
+  .navbar-inner {
+    padding-left:10px;
+    .container {
+      width:auto;
+    }
+  }
+}
+
+.commands {
+    border-top:1px solid #DDD;
+}
+
+.pad10 {
+  padding: 10px 0px 10px 0px;
+}
+
+.question_label, .answer_label {
+  float:left;
+  margin-right:10px;
+}
+
+.answer_label {
+  margin-left:30px;
+}
+
+input.answer {
+  margin-left:30px;
+}
+
+.correct_answer {
+  float:left;
+}
+
+ul.quiz_answers { list-style-type: none; }
+
+.course-view {
+  .course_info{
+    background-color:#BAE2FC;
+    padding:10px;
+    border:1px solid #2D82B5;
+    .course_attributes{
+      float:left;
+    }
+  }
+  h3 {
+    line-height:1;
+  }
+  .actions {
+    float:right;
+    a.btn-success {
+      width:70px;
+    }
+
+  }
+
+  p {
+    clear:both;
+  }
+}
+
+.module-content {
+  margin-top:10px;
+  margin-bottom:20px;
+}
+
+.exit_wrapper {
+    float:left;
+  }
+
+.buttons_wrapper {
+  clear:both;
+  width:100%;
+  margin-top:20px;
+  float:left;
+}
+
+.course-play-container {
+  table {
+    tr.completed {
+      background-color:#D3FFBF;
+    }
+    tr.unavailable {
+      background-color:whitesmoke;
+      color: #999999;
+    }
+    tr.in_progress {
+      background-color:#E39D64;
+    }
+
+  }
+}
+
+table.search-results {
+  .title {
+    float:left;
+  }
+  .action {
+    float:right;
+  }
+  .description {
+    clear:both;
+  }
+}
+
+
+.module_table li
+{
+  list-style-type:none;
+  margin-bottom:10px;
+}
+
+.module_content {
+  border: 1px solid #DDD;
+  min-height:300px !important;
+  padding: 15px;
+  .module_type_select_wrapper {
+    border-bottom:1px solid black;
+    display:inline-block;
+    width:100%;
+    padding-bottom:10px;
+    margin-bottom:10px;
+    .module_type_select {
+      float:right;
+    }
+  }
+}
+
+.module_content.empty {
+  padding-top:50px;
+  text-align:center;
+}
+
+.module_reorder {
+  border: 1px solid #DDD;
+  padding: 0px 15px;
+  min-height:300px !important;
+  ul {
+    list-style:none;
+    margin: 0px;
+    li {
+      border-top:1px solid #DDD;
+      //margin: 10px 0px;
+      //padding: 10px 0px;
+      .module_container {
+        padding: 10px 5px;
+      }
+      .module_container.selected {
+        background-color:#EBF9FF;
+      }
+    }
+    li:first-child {
+      border-top:none;
+      margin-top:0px;
+      padding-top:0px;
+    }
+
+  }
+  .header {
+    clear:both;
+    display:inline-block;
+    width:100%;
+    h4 {
+      float:left;
+    }
+    a {
+      float:right;
+      margin: 10.5px 0px;
+    }
+  }
+}
+.new_question {
+  clear: both; 
+  display: inline-block; 
+  width: 100%;
+}
+.question_content {
+  font-size:larger;
+}
+.asked_on_date {
+  font-size:8pt;
+}

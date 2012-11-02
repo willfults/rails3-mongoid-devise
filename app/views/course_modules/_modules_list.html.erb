@@ -1,0 +1,21 @@
+<div class="span4 module_reorder">
+  <div class="header">
+    <h4>Modules</h4>
+    <%= link_to 'Add Module', new_course_course_module_path + '?type=Video' %>
+  </div>
+  <% if @course_modules.empty? %>
+    <div class="no_data_found_container">
+    No course modules found.
+    </div>
+  <% else %>
+        <%= form_for @course, :url => {:action => :reorder_save } do |f| %>
+          <%= hidden_field(:course_modules, :order, :id => "module_order", :name => "module_order", :value => "") %>
+
+          <ul class="modules_list" id="modules_list">
+            <%= f.fields_for :course_modules do |course_module| %>
+              <%= render :partial => "module_item", :locals => {:course_module => course_module.object, :module_page => 'true'} %>
+            <% end %>
+          </ul>
+        <% end %>
+    <% end %>
+</div>

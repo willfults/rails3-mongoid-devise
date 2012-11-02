@@ -1,0 +1,28 @@
+<% content_for :sub_menu do %>
+<div class="navbar navbar-static-top courses_navbar">
+  <div class="navbar-inner sub-nav">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+      <nav class="nav-collapse">
+        <ul class="nav pull-left">
+          <li class="<%= activate_menu("dashboard", highlight) %>">
+          
+              <i class="icon-home icon-white"></i>Dashboard
+           
+          </li>
+          <li class="<%= activate_menu("courses", highlight) %>">
+           
+              <i class="icon-book icon-white"></i>Courses
+           
+          </li>
+
+      </nav>
+    </div>
+  </div>
+</div>
+
+<% end %>

@@ -1,0 +1,81 @@
+<%= render 'courses_menu', :highlight => "courses"  %>
+<div class="container-fluid course-play-container">
+  <div class="row-fluid">
+    <div class="span12">
+      <h3><%=@course.name %></h3>
+      <p>
+        <%= @course.description.html_safe %>
+      </p>
+      <p>
+      	<%= ratings_for @course, :static %>
+		<% if @course.user_id != current_user.id && @course_history.status == 'completed'%>
+	      	<%= link_to "Review this course", review_course_path(@course) %>
+		<% end %>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="row-fluid">
+  	<div class="span12">
+  	        <ul class="nav nav-tabs">
+		    <li class="active"><a href="#modules" data-toggle="tab">Modules</a></li>
+		    <li><a href="#questions" data-toggle="tab">Course Q & A</a></li>
+		    <li><a href="#new_question" data-toggle="tab">Ask A Question</a></li>
+	    </ul>
+    <div class="tab-content">
+		<div class="tab-pane active" id="modules">
+      <table class="table table-hover">
+        <tbody>
+          <%
+          lastCompletedModule = @course_history.lastCompletedModule
+          foundStartModule = false;
+          @course.course_modules.each_with_index do |course_module, index|
+            @module_history = @course_history.course_module_histories.where(:course_module_id => course_module.id).first
+            if !@module_history
+              @module_history = CourseModuleHistory.new
+            end
+
+            statusClass = @module_history.status
+            if foundStartModule && !@module_history.id
+              statusClass = "unavailable"
+            end
+          %>
+          <tr class="<%= statusClass %>">
+            <td><%= course_module.name %></td>
+            <td>
+              <% if !foundStartModule || @module_history.id %>
+              <div class="commands">
+                <%= link_to @module_history.status == "in_progress" ? 'Resume':@module_history.status == "completed" ?"Review":"Start", course_course_module_path(@course, course_module) %>
+              </div>
+              <% end %>
+            </td>
+          </tr>
+            <% if lastCompletedModule < course_module.position
+              foundStartModule = true
+             end
+            %>
+          <% end %>
+        </tbody>
+      </table>
+        </div>
+      		<div class="tab-pane" id="questions">
+      		    <% if @questions.empty? %>
+					This course currently has no questions.
+				<% else %>
+					<div class="courses_found results_container">
+						<% @questions.each do |result| %>
+							<%= render 'questions/questions', :result => result %>
+						<% end %>
+					</div>
+				<% end %>
+      		</div>
+      		<div class="tab-pane" id="new_question">
+      			<%= render :partial => 'questions/new_question' %>
+      		</div>
+		</div>
+    </div>
+  </div>
+</div>
+
+

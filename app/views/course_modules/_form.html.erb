@@ -1,0 +1,155 @@
+<div class="container-fluid">
+  <ul class="nav nav-tabs">
+    <li>
+      <%= link_to 'Details', edit_course_path(@course) %>
+    </li>
+    <li class="active">
+      <%= link_to 'Modules', course_course_modules_path(@course) %>
+    </li>
+    <li>
+    	<%= link_to "Recommendations", :controller => "course_recommendations", :action => "new", :course_id => @course %>
+    </li>
+  </ul>
+  
+  
+    <% if @course_module.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+        <% @course_module.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div id="errors_div" style="display:none;color: red">
+    	Name and description are required.
+    </div>
+
+    <div class="row-fluid">
+      <div class="span8 module_content">
+        <%= form_for [@course, @course_module], :html => {:multipart => true, :id => "fileupload" } do |f| %>
+        <% if @course_module.class_type != "Scorm" %>
+          <div class="module_type_select_wrapper">
+            <div class="btn-group module_type_select">
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                Module Type
+                <span class="caret"></span>
+              </a>
+              
+              <ul class="dropdown-menu">
+                <li><a href="<%=new_course_course_module_path %>?type=Video">File</a></li>
+                <li><a href="<%=new_course_course_module_path %>?type=Quiz">Quiz</a></li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+        
+        <%= f.hidden_field :class_type%>
+        Course: <%= @course.name %>
+        <%= f.label :name, " Module Name" %>
+        <%= f.text_field :name, :class => 'input-full'%>
+        <%= f.label :summary, "Description" %>
+        <%= tinymce %>
+        <%= f.text_area :summary, :class => 'input-full tinymce' %>
+        
+        <% if @course_module.class_type != "Quiz" && @course_module.class_type != "Scorm" %>
+        	<label class="radio">
+        	    <%= f.radio_button :class_type, 'Video', :class => 'class_type', :checked => true %> Upload Audio, Video or Image
+        	</label>
+        	<label class="radio">
+    			<%= f.radio_button :class_type, 'Youtube', :class => 'class_type' %> Embed YouTube Video
+    		</label>
+        <% end %>
+
+        <% if @course_module.class_type == "Image" && @course_module.file.present? %>
+          <div class="uploaded_item">
+            <%= image_tag @course_module.file.url, :width => "200",  :alt => "Image" %>
+          </div>
+        <% end %>
+            
+        <% if @course_module.class_type != "Quiz" && @course_module.class_type != "Scorm" %>
+          <div class="uploaded_item" id="video_file_container">
+	        <%= f.label :file %>
+	        <%= f.file_field :file, :class=>'input-full', :value => @course_module.file %>
+	        <%= f.hidden_field :file_cache %>
+          </div>
+           
+		  <div class="youtube_container">
+		   	<label>
+		       	<a href="http://youtube.com" class="icon-share" target="_blank"></a> YouTube Video URL
+		    </label>
+		    <%= f.text_field :video_url, :class=>'input-full', :value => @course_module.video_url %>
+		  </div>
+	      
+
+                                <!-- The global progress bar -->
+                <div class="progress progress-success progress-striped active fade">
+                    <div class="bar" style="width:0%;"></div>
+                </div>
+                        <!-- The loading indicator is shown during image processing -->
+		        <div class="fileupload-loading"></div>
+		        <br>
+		        <!-- The table listing the files available for upload/download -->
+		        <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+		        </table>
+
+			<%= render 'file_upload', :button_name => 'Create Course Module' %>
+
+        <% end %>
+        
+        
+        <% 
+        i = 1
+        if @course_module.class_type == "Quiz" %>
+          
+            <%= f.fields_for :quiz do |quiz| %>
+                <%= quiz.label :passing_score, "Passing Score %"%>
+                <%= quiz.text_field :passing_score, :class => 'input-full'%>
+              
+              <%= quiz.fields_for :quiz_questions do |question| %>
+                <fieldset>
+                  <%=question.label :question, "Question " + i.to_s, :class => "question_label"%><span style="float:left;">(Check the correct answer)</span>
+                  <% i += 1 %>
+                  <%=question.text_field :question, :class => 'input-full'%>
+                  <%= question.fields_for :quiz_answers do |answer| %>
+                    <%= answer.label :answer, :class => 'answer', :class => "answer_label"%>
+                    <%= answer.check_box :correct_answer, :class => 'input-check correct_answer'%>
+                    <%= answer.text_field :answer, :class => 'input-full answer'%>
+                  <% end %>
+                </fieldset>
+              <% end %>
+            <% end %>
+            
+        <% end %>
+        <div class="buttons_wrapper">
+          <div class="actions">
+            <% if @course_module.class_type == "Quiz" %>
+              <%= f.submit 'Add question', :name => "add_question", :class => 'btn btn-primary'  %>
+              <%= f.submit :class => 'btn btn-primary' %>
+            <%  else  %>
+            <div id="jquerySubmitButton" style="float:right;margin-left:10px;">
+                  <a class="btn btn-primary submitButton">
+                      <span>Create Course Module</span>
+                  </a>
+            </div>
+            <div class="youtube_container" style="display:none;float:right;margin-left:10px;">
+              <%= f.submit :class => 'btn btn-primary' %>
+            </div>
+            
+            <% if @course_module.id %>
+              <%= link_to 'Delete', course_course_module_path(@course, @course_module), confirm: 'Are you sure?', method: :delete, :class => "btn btn-primary" %>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+        
+        <% end %>    
+      </div>
+      <%= render :partial => 'modules_list' %>
+    </div>
+  
+</div>
+
+<%= javascript_tag do %>
+  window.course_id = "<%= @course.id%>";
+<% end %>

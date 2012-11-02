@@ -1,0 +1,51 @@
+<%= render 'courses_admin_menu', :highlight => "courses" %>
+
+<div class="container-fluid user_courses_container">
+  <div class="row-fluid">
+    <div class="span9">
+      <table class="table table-hover">
+        <tbody>
+          <%
+          if @courses.empty?
+            %>
+              <tr><td>You have not created any courses yet.<br/>Click on the Create Course button to get started.</td></tr>
+            <%
+          end
+          @courses.each do |course| %>
+            <tr>
+              <td>
+                <div class="title"><%= link_to course.name, :controller => "courses", :action => "edit", :id => course%></div>
+                <div><%= pluralize course.course_modules.size, 'module' %> </div>
+                <% if course.published %>
+                  <span class="label label-success">Published</span>
+                <% else %>
+                  <span class="label">Draft</span>
+                <% end %>
+                <span class="created_at"><%= course.created_at.strftime("%b %d, %Y %I:%M %p") %></span>
+			<%= ratings_for course, :static %>
+              </td>
+              <td class="commands">
+                <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
+              </td>
+        		  <td class="commands">
+        			<%= link_to "Course Forums", :controller => "forums", :action => "index", :course_id => course %>
+        		  </td>
+        		  <td class="commands">
+              <%= link_to 'Delete', course_path(course), confirm: 'Are you sure?', method: :delete %>
+              </td>
+
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+	 <% if can? :create, Course %>
+	     <div class="span3">
+	     		<%= link_to 'Create Course', {:controller => "courses", :action => "new"}, :class => 'btn btn-primary' %>
+     	     </div>
+	<% end %>
+
+  </div>
+</div>

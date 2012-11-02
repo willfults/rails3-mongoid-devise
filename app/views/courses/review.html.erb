@@ -1,0 +1,17 @@
+<h3>Review Course: <%= @course.name%></h3>
+
+<%= ratings_for @course, current_user %>
+<%= form_tag 'review_course' do |f| %>
+	<div>
+		<%= label_tag "review", 'Write a review:' %>
+		<% if @rate.nil? %>
+			<%= text_area_tag "review" %>
+		<% else %>
+			<%= text_area_tag "review", @rate.review %>
+		<% end %>
+		<input type="hidden" name="id" value="<%= @course.id %>">
+	</div>
+	<div>
+		<%= submit_tag "Save", :class => "btn btn-primary" %>
+	</div>
+<% end %>

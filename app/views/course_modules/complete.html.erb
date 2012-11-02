@@ -1,0 +1,58 @@
+<%= render 'courses/courses_menu', :highlight => "courses"  %>
+
+<div class="container course_completion">
+  <div class="row-fluid">
+    <div class="span10" style="margin:0 auto;float:none;">
+      <div class="row-fluid">
+        <div class="span12">
+          <p id="notice"><%= notice %></p>
+          <h3 style="float:left;"><%= "Congratulations! You completed the course '" + @course.name + "'." %></h3><br><br><br>
+          <div>
+          	<%= link_to "Review this course", review_course_path(@course) %>
+          </div>
+        </div>
+      </div>
+      </br>
+      
+      <div class="row-fluid">
+        <div class="span12">
+          <h3 style="float:left;"><%= "Recommendations" %></h3>
+        </div>
+      </div>
+      </br>
+      
+      <% 
+      	if @course.recommendations.empty? 
+      %>
+              <h5>No Courses have been recommended.</h5> 
+      <%
+        end
+      	@course.recommendations.each do |recommendation| 
+        reccourse = Course.find(recommendation.recommended_course_id) 
+      	bookmark = current_user.bookmarks.where(:course_id => recommendation.recommended_course_id).first   
+      %>
+      	<div class="title"><%= link_to reccourse.name, course_path(reccourse) %></div>
+      	<div class="Author">by <%= link_to reccourse.user_name, creator_landing_path(reccourse.user) %>
+      	<div class="action" style="float:right;">
+        	<% if current_user.present? %>
+          		<% if !bookmark %>
+            		<%= link_to "Bookmark", course_path(reccourse)+"/bookmark", :class => "btn btn-small btn-primary bookmark", :remote => true %>
+          		<% else %>
+            		<span class="label" title="This course can be found on your Courses page" >Bookmarked</span>
+          		<% end %>
+       		<% end %>  
+      	</div>
+      	<div class="description"><%= truncate reccourse.description.html_safe, :length => 300 %></div>
+      	<%= ratings_for reccourse, :static %>
+      	</br>
+      <% end %> 
+      
+      </br> 
+      <div class="row-fluid module-content" style="">
+        <div class="span8" style="min-width:580px">
+          <p>Go to <%= link_to "My Courses", my_courses_path %></p>
+        </div>
+      </div>    
+    </div>
+  </div>
+</div>

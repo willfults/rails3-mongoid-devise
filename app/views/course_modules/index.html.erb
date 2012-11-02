@@ -1,0 +1,38 @@
+<%= render 'courses/courses_admin_menu' , :highlight => "courses" %>
+
+<div class="container-fluid">
+  <div id="flash">
+    <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+  </div>
+  <ul class="nav nav-tabs">
+    <li>
+      <%= link_to 'Details', edit_course_path(@course) %>
+    </li>
+    <li class="active">
+      <%= link_to 'Modules', course_course_modules_path(@course) %>
+    </li>
+    <li>
+      <%= link_to "Recommendations", :controller => "course_recommendations", :action => "new", :course_id => @course %>
+    </li>
+  </ul>
+  <div class="row-fluid">
+    <div class="span8 module_content empty">
+      <%= link_to 'Click here to create a new module', new_course_course_module_path + '?type=Video' %><br/><br/>
+       <% if @course.id && !@course.published && @course_modules.size > 0 %>
+    <div>
+        <%= link_to "Publish Course", publish_course_path(@course), :class => "btn btn-success", :confirm => "Are you sure you want to Publish?" %>
+    </div>
+    <% end%>
+
+    <% if @course.id && @course.published? && @course.privacy == "Public" %>
+      <div>
+          <%= render :partial => 'courses/share_on_facebook' %>
+      </div>
+    <% end %>
+  </div>
+  <%= render :partial => 'modules_list' %>
+
+
+
+</div>
+

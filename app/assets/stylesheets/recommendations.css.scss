@@ -1,0 +1,64 @@
+.recommendations table
+{
+  border:1px solid black;
+}
+
+.recommendations table td
+{
+  vertical-align:middle;
+}
+
+.recommendations table th
+{
+  padding:0px;
+}
+
+.recommendations table th,
+.recommendations table td
+{
+  text-align:center;
+  border-left:1px solid #aaa;
+  border-bottom:1px solid #aaa;
+}
+
+.recommendations table td.name h4
+{
+  margin:0;
+}
+
+.recommendations table td.name,
+{
+  text-align:left;
+}
+
+.recommendations table td.action,
+{
+  text-align:center;
+}
+
+.recommendations table th.name
+{
+  width:60%;
+}
+
+.recommendations table th.action
+{
+  width:5%
+}
+
+.recommendations table td.name
+{
+  width:60%;
+}
+
+.recommendations table td.action
+{
+  width:5%
+}
+
+
+.recommendations table td.name,
+{
+  background-color:#ddd;
+}
+

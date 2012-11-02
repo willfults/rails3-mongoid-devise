@@ -1,0 +1,34 @@
+<li id="<%= course_module.position %>" style="<%= course_module.id%>" >
+  <div class="module_container <%=(@course_module && @course_module.id == course_module.id)?"selected":"" %>">
+    <div class="part">
+      <div class="title">
+        <%= link_to course_module.name, edit_course_course_module_path(@course, course_module) %>
+        <% if module_page == 'true' %>
+    	    <span class="actions">
+    		    <a class="btn upArrow"><i class="icon-arrow-up"></i></a>
+    		    <a class="btn downArrow"><i class="icon-arrow-down"></i></a>
+    	    </span>
+        <% end %>
+      </div>
+
+    </div>
+
+    <% if course_module.class_type == "Image" %>
+      <div>
+        <%= image_tag course_module.file.url, :width => "100",  :alt => "Image" %>
+      </div>
+    <% elsif course_module.class_type == "Audio" || course_module.class_type == "Video" %>
+      <div>
+        <div id="video">
+          <video width="100" height="75" class="jwplayer" src="<%=course_module.file %>" id="mini_player<%= course_module.id%>"></video>
+        </div>
+      </div>
+    <% elsif course_module.class_type == "Youtube" %>
+        <div>
+          <div class="video">
+            <video width="100" height="75" class="jwplayer" src="<%=course_module.video_url %>" id="mini_player<%= course_module.id%>"></video>
+          </div>
+        </div>
+    <% end %>
+    </div>
+</li>

@@ -1,0 +1,209 @@
+body {
+  padding-left:0px;
+  padding-right:0;
+}
+
+header.navbar, footer.navbar, .navbar{
+  margin-bottom:0px;
+}
+
+textarea {
+  width: 492px;
+  height: 131px;
+  resize:none;
+}
+
+.navbar-inner {
+    border-radius:0px;
+
+    .navbar-search {
+      .search-query {
+        border-color: white;
+        background-color:white;
+        color: black;
+      }
+      .search-query:-moz-placeholder {
+        color: black;
+      }
+    }
+
+    .nav > li > a.btn-success:focus,
+    .nav > li > a.btn-success:hover {
+      background-color:#98b64d;
+    }
+}
+
+.container.main {
+  width:100%;
+}
+.courses_navbar {
+  .navbar-inner.sub-nav {
+      background-color: #2D82B5;
+      background-image:none;
+      .nav > li > a {
+        color:white;
+      }
+      .nav > li > a:hover,
+      .nav > li > a:focus {
+        color:#C4C4C4;
+      }
+      .nav > .active > a,
+      .nav > .active > a:hover,
+      .nav > .active > a:focus {
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3) inset;
+      }
+  }
+}
+
+div.headers {
+  margin-bottom:20px;
+}
+
+
+.navbar .nav li a.btn {
+  padding: 4px 10px;
+}
+
+i {
+  margin-right: 3px;
+}
+
+.main-container {
+  width:100%;
+}
+
+td.commands {
+  text-align:right;
+}
+
+
+.signin .controls {
+  margin-left:0;
+}
+
+.home {
+  .hero-unit {
+    padding:10px 40px;
+    min-height: 220px;
+    margin-bottom: 20px;
+    margin-top:0px;
+  }
+  .row-fluid {
+    margin: 0px 0 0 0;
+  }
+}
+
+.title a {
+  font-size:1.2em;
+}
+
+div.commands{
+  text-align:right;
+  ul{
+    display:inline;
+    list-style:none;
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+  }
+  li{
+    width:173px;
+    display:inline;
+    list-style:none;
+    list-style-type:none;
+    margin:0px;
+    border:none;
+    border-left: 1px solid;
+    line-height: 13px;
+    padding: 0px 5px 0px 5px;
+  }
+  li:first-child{
+    border-left:none;
+    padding:0px;
+  }
+}
+
+form {
+  .input-full {
+    width: 90%;
+  }
+  textarea.input-full {
+    height: 80px;
+  }
+  .actions {
+    clear:right;
+    float:right;
+  }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  background-image: url("glyphicons-halflings.png");
+}
+/* White icons with optional class, or on hover/active states of certain elements */
+.icon-white,
+.nav > .active > a > [class^="icon-"],
+.nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"] {
+  background-image: url("glyphicons-halflings-white.png");
+}
+
+.controls.remember_me
+{
+  .checkbox
+  {
+    min-height:inherit;
+    margin-bottom:20px;
+  }
+}
+
+.controls
+{
+  .help-inline
+  {
+    font-size:smaller;
+  }
+}
+
+.devise_shared_links
+{
+  margin-top:20px;
+}
+
+/* landing page css */
+.home {
+  .hero-unit {
+    padding:20px 60px;
+    min-height: 230px;
+    margin-bottom: 30px;
+    margin-top:0px;
+  }
+}
+
+.services
+{
+  margin-top:10px;
+}
+
+.courses_navbar .admin_swtich_btn
+{
+  margin-right:30px;
+}
+
+.row-fluid .span3
+{
+  margin-bottom:10px;
+}
+
+div.captcha
+{
+  text-align:center;
+}
+
+.flash
+{
+  color:red;
+}

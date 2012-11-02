@@ -1,0 +1,73 @@
+<%= render_course_subnav( 'courses') %>
+
+<div class="container-fluid course-view">
+  <div class="row-fluid">
+    <div class="span12 course_info">
+      
+      <div class="span10 course_attributes">
+        <h3 class="title" ><%=@course.name %></h3>
+        <div class="rating"><%= ratings_for @course, :static %> </div>
+        <div class="author">Authored by: <%= @course.user.name %></div>
+        <div class="description">Description: <%= @course.description.html_safe %></div>
+      </div>
+      
+      <% if signed_in? %>
+        <div class="actions">
+         <% if @course.id && @course.published? && @course.privacy == "Public" %>
+	        <%= render :partial => 'courses/share_on_facebook' %>     
+          <% 
+         end
+          bookmark = current_user.bookmarks.where(:course_id => @course.id).first
+          if !bookmark %>
+            <%= link_to "Bookmark", course_path(@course)+"/bookmark", :class => "btn btn-primary bookmark", :remote => true %>
+          <% else %>
+            <span class="label" title="This course can be found on your Courses page" >Bookmarked</span>
+          <% end %>
+        <%= link_to "Start", course_course_module_path(@course, @course.course_modules.first), :class => "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <br/>
+  <div class="row-fluid">
+    <div class="span12">
+        <ul class="nav nav-tabs">
+		    <li class="active"><a href="#modules" data-toggle="tab">Modules</a></li>
+		    <li><a href="#questions" data-toggle="tab">Questions</a></li>
+	    </ul>
+	    <div class="tab-content">
+			<div class="tab-pane active" id="modules">
+		      <table class="table table-hover">
+		        <tbody>
+		          <% 
+		          @course.course_modules.each_with_index do |course_module, index|
+		          %>
+		          <tr>
+		            <td><span>Part <%= index + 1 %></span> - <%= course_module.name %> (<%=course_module.class_type %>)
+		            <p><%= course_module.summary %></p>  
+		            </td>
+		          </tr>
+		          <% end %>
+		        </tbody>
+		      </table>
+		      </div>
+      		<div class="tab-pane" id="questions">
+      		    <div class="new_question">
+      		      <%= render :partial => 'questions/new_question' %>
+      		    </div>
+      		    <% if @questions.empty? %>
+					This course currently has no questions.
+				<% else %>
+					<div class="courses_found results_container">
+						<% @questions.each do |result| %>
+							<%= render 'questions/questions', :result => result %>
+						<% end %> 
+					</div>
+				<% end %>
+      		</div>
+		</div>
+    </div>
+  </div>
+</div>
+
+

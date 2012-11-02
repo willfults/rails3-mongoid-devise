@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <%= form_for @course, :html => {:multipart => true} do |f| %>
+
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <% if @course.id%>
+      <%= link_to 'Details', edit_course_path(@course) %>
+      <% else %>
+      <%= link_to 'Details', new_course_path %>
+      <% end %>
+    </li>
+    <% if @course.id%>
+    <li>
+      <%= link_to 'Modules', course_course_modules_path(@course) %>
+    </li>
+
+    <% end %>
+  </ul>
+  <% if @course.errors.any? %>
+  <div class="row-fluid"><div class="span12">
+    <div id="error_explanation">
+      <ul>
+        <% @course.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div></div>
+  <% end %>
+  <div class="row-fluid">
+    <div class="span6">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class=>'input-full' %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, :class=>'input-full tinymce' %>
+
+
+    </div>
+    <div class="span6">
+
+      <%= f.label :category_id %>
+      <%
+        categories_array = [["Select a category", ""],["education", "1"]]
+        #categories_array += Category.all.map { |category| [category.name, category.id] }
+        
+       %>
+      <%= select :course, :category_id, options_for_select(categories_array, @course.category_id),{}, { :class => 'input-full' } %>
+
+      <%= f.label :privacy %>
+      <%= select :course, :privacy, [["Choose One", ""], ["Public", "Public"], ["Private", "Private"]],{},{ :class => 'input-full' } %>
+    </div>
+    <div class="buttons_wrapper">
+      <div class="exit_wrapper">
+        
+      </div>
+      <div class="actions">
+        <%= f.submit "Save", :class => "btn btn-primary" %>
+        <% if @course.id && !@course.published %>
+          <%= f.submit "Publish and Save", :name => "publish", :class => "btn btn-success", :confirm => "Are you sure you want to Publish?" %>
+        <% elsif @course.id && @course.published %>
+          <%= f.submit "Un-Publish and Save", :name => "un_publish", :class => "btn btn-warning", :confirm => "Are you sure you want to Un-Publish?" %>
+        <% end %>
+        
+        <% if @course.id && @course.published? && @course.privacy == "Public" %>
+          <%= render :partial => 'courses/share_on_facebook' %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <% end %>
+</div>

@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.Jcrop
+//= require bootstrap
+//= require bootstrap.min
+//= require highcharts 
+//= require jquery-fileupload
 //= require_tree .

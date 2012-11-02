@@ -5,4 +5,19 @@ Rails3MongoidDevise::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
+    resources :courses do
+    member do
+      post :rate
+      get :bookmark
+      get :publish
+      get :review
+    end
+    get :autocomplete_tag_name, :on => :collection
+    resources :course_modules do
+      collection do
+        get :reorder
+        put :reorder_save
+      end
+    end
+  end
 end

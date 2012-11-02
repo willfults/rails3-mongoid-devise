@@ -1,0 +1,70 @@
+.forum table
+{
+  border:1px solid black;
+}
+
+.forum table td
+{
+  vertical-align:middle;
+}
+
+.forum table th
+{
+  padding:0px;
+}
+
+.forum table th,
+.forum table td
+{
+  text-align:center;
+  border-left:1px solid #aaa;
+  border-bottom:1px solid #aaa;
+}
+
+.forum table td.title h4
+{
+  margin:0;
+}
+
+.forum table td.title,
+.forum table td.content
+{
+  text-align:left;
+}
+
+.forum table th.title
+{
+  width:30%;
+}
+
+.forum table th.topics,
+.forum table th.posts
+{
+  width:2%;
+}
+
+.forum table th.author
+{
+  width:10%
+}
+
+.forum table th.last_post
+{
+  width:10%;
+}
+
+.forum table td.title,
+{
+  background-color:#efefef;
+}
+
+.forum table td.topics,
+.forum table td.posts,
+.forum table td.author,
+.forum table td.last_post,
+.forum table td.content,
+.forum table td.author
+{
+  background-color:#ddd;
+}
+

@@ -5,7 +5,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'jquery-rails'
 gem "mongoid", ">= 3.0.6"
 gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
 gem "database_cleaner", ">= 0.8.0", :group => :test
@@ -17,3 +16,11 @@ gem "capybara", ">= 1.1.2", :group => :test
 gem "factory_girl_rails", ">= 4.1.0", :group => [:development, :test]
 gem "devise", ">= 2.1.2"
 gem "quiet_assets", ">= 1.0.1", :group => :development
+
+# added below this line
+gem 'mini_magick', '~> 3.4'
+gem 'carrierwave-mongoid'
+gem 'carrierwave', '0.6.2'
+gem 'jquery-fileupload-rails'
+gem 'lazy_high_charts'
+gem 'jquery-rails', '~> 2.0.0'
