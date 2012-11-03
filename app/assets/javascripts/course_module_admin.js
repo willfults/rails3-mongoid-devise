@@ -58,7 +58,7 @@ $(document).ready(function() {
 		if($(".uploaded_item").length > 0) {
 		  $(".edit_course_module").submit();
 		}
-		tinyMCE.triggerSave()
+		//tinyMCE.triggerSave()
 		if ($("#fileupload .creationButton").length > 0){
 			$("#fileupload .creationButton").click();
 		}else{

@@ -13,7 +13,7 @@ class CourseModule
   field :summary, type: String
   field :class_type, type: String
   field :file, type: String
-  field :course_id, type: Integer
+  field :course_id, type: String # this is now a string because of mongo
   field :position, type: Integer
   field :video_url, type: String
   field :scorm_resource_path, type: String

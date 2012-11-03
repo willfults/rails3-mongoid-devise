@@ -4,7 +4,7 @@ class Course
   include Mongoid::Timestamps
 
   attr_accessible :description, :name, :privacy, :category_id, :published, :user_id, :rating_average#, :scorm_file 
-  field :user_id, type: Integer # index this field, used for queries
+  field :user_id, type: String # index this field, used for queries
   field :category_id, type: Integer
   field :privacy, type: String
   field :published, type: Boolean
