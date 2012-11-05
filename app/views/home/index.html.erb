@@ -1,6 +1,0 @@
-<h3>Home</h3>
-  <% if current_user.present? %>
-  <p>User: <%=link_to current_user.name, current_user %></p>
-	
-<%= link_to 'Create Course', {:controller => "courses", :action => "new"}, :class => 'btn btn-primary' %>
-<% end%>
