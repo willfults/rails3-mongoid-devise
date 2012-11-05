@@ -1,0 +1,36 @@
+<% if @user.twitter_username && @user.twitter_username != '' %>
+<h3>Latest Tweets</h3>
+<% if @user == current_user %>
+<p>Change twitter username in <%= link_to "Settings", edit_user_registration_path %>.
+<% end %>
+<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 4,
+  interval: 30000,
+  width: 250,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#ddd',
+      color: '#333'
+    },
+    tweets: {
+      background: '#ccc',
+      color: '#333',
+      links: '#339'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: false,
+    live: false,
+    behavior: 'all'
+  }
+}).render().setUser('<%=@user.twitter_username%>').start();
+</script>
+<% elsif @user == current_user %>
+<p>Add your twitter username to your <%= link_to "Settings", edit_user_registration_path %> to see your latest tweets here.</p>
+<% end %>

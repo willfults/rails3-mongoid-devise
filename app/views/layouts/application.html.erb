@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Rails3 Mongoid Devise" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails3 Mongoid Devise" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <%= yield(:head) %>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <%= render 'layouts/navigation' %>
-        <%= render 'layouts/messages' %>
-      </header>
-      <div id="main" role="main">
-        <%= yield %>
-      </div>
-      <footer>
-      </footer>
-    </div> <!--! end of #container -->
-  </body>
+<head>
+  <title>Social University</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+  <div class="headers">
+    <%= render 'layouts/header' %>
+    <%= yield :sub_menu%>
+  </div>
+  <div class="container main">
+    <%= yield %>
+  </div>
+  <%= render 'layouts/footer' %>
+ </body>
 </html>

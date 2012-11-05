@@ -15,6 +15,7 @@
 //= require jquery.Jcrop
 //= require bootstrap
 //= require bootstrap.min
-//= require highcharts 
+//= require highcharts
+//= require course
 //= require jquery-fileupload
 //= require_tree .

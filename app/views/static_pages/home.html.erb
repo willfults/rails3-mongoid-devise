@@ -1,0 +1,73 @@
+<% if ! signed_in? %>
+<div class="container home">
+  <div class="row-fluid">
+    <div class="span8 hero-unit">
+      <h3>
+        The easiest way to take courses
+      </h3>
+      <ul>
+        <li>Access training online, anytime via a web browser!</li>
+        <li>Search for courses by industry</li>
+        <li>Create and sell courses online</li>
+        <li>There's no long term contract or setup fee</li>
+      </ul>
+    </div>
+
+    <div class="span4 hero-unit">
+      <h3>
+        Sign In
+      </h3>
+      <%= form_tag new_user_session_path, :class => 'form-inline sign_in' do %>
+        <div class="control-group">
+          <div class="controls">
+            <%= text_field_tag 'user[email]', "", :placeholder => 'email', :autocapitalize => 'off',  :autocorrect => 'off' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <%= password_field_tag 'user[password]', "",   :placeholder => 'password' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <%=  submit_tag 'Sign In', :class => 'btn btn-primary' %>
+            &nbsp;or  <%= link_to "Sign up now!", new_user_registration_path %>
+          </div>
+
+          <%= render "shared/login_authentication_links" %>
+        </div>
+  <% end %>
+    </div>
+
+    </div>
+    <div class="row-fluid">
+      <div class="span12 hero-unit">
+    <h2>Welcome to Social University</h2>
+
+    <p>
+      Here you are able to take and create courses easily. Its a revolutionizing way to take courses. It will help you get the job you have always wanted!
+    </p>
+
+    <%= link_to "Sign up now!", new_user_registration_path,
+                                class: "btn btn-large btn-primary" %>
+
+  <a href="#" data-kera-tutorial="223" class="btn btn-large btn-success">Launch Tutorial</a>
+
+
+    </div>
+
+  </div>
+</div>
+<% elsif signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
+    </aside>
+
+  </div>
+<% end %>

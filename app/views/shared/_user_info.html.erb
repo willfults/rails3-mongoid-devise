@@ -1,0 +1,10 @@
+<a href="<%= user_path(current_user) %>">
+  <%= image_tag(@avatar.image.url(:thumb)) if current_user.avatar? %>
+  <%= image_tag('default_avatar.jpg') if !current_user.avatar? %>
+</a>
+<h1>
+  <%= current_user.name %>
+</h1>
+<span>
+  <%= link_to "view my profile", current_user %>
+</span>

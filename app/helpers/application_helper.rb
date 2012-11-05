@@ -11,7 +11,7 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
-  
+
   def notice
     flash[:notice]
   end
@@ -23,11 +23,11 @@ module ApplicationHelper
   def set_admin_mode(value)
     session[:course_admin_mode] = value
   end
-  
+
   def admin_mode?
     current_user.is_course_creator? && session[:course_admin_mode] == true
   end
-  
+
   def render_course_subnav(menu_class)
     if signed_in?
       if admin_mode?
@@ -37,7 +37,7 @@ module ApplicationHelper
       end
     end
   end
-  
+
   # if the selected_menu class name matches the menu_class
   # we make that menu item active
   def activate_menu(menu_class, selected_menu)
@@ -45,16 +45,6 @@ module ApplicationHelper
     class_list += (selected_menu == menu_class) ? " active" : ""
   end
 
-
-  # "Are you a human" captcha initialization code
-  def ayah_init
-     ayah = AYAH::Integration.new("d5fbcc5d5d32f645158e72fc00b55eea205b13b4", "3969dc9a22c5378abdfc1d576b8757a8638b16d7")
-  end
-
-  def ayah_view_init
-    ayah = ayah_init
-    @captcha_html = ayah.get_publisher_html
-  end
 
   def unzip_file(filename, destination)
     Zip::ZipFile.open(filename) {|file|
